@@ -1,54 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import api from '../../api'
+import { useForm } from '../../hooks'
 
 export default function Login(props) {
-  const [state, setState] = useState({
-    username: '',
-    password: '',
-    message: null,
-  })
-
-  function handleInputChange(event) {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    })
-  }
-
-  function handleClick(e) {
-    e.preventDefault()
+  const { handleChange, handleSubmit, values } = useForm(() => {
     api
-      .login(state.username, state.password)
+      .login(values.username, values.password)
       .then(result => {
         console.log('SUCCESS!')
         props.history.push('/') // Redirect to the home page
       })
-      .catch(err => setState({ message: err.toString() }))
-  }
+      .catch(err => setMessage(err.toString()))
+  })
+
+  const [message, setMessage] = useState(null)
 
   return (
     <div className="Login">
       <h2>Login</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         Username:{' '}
         <input
           type="text"
-          value={state.username}
+          value={values.username || ''}
           name="username"
-          onChange={handleInputChange}
+          onChange={handleChange}
         />{' '}
         <br />
         Password:{' '}
         <input
           type="password"
-          value={state.password}
+          value={values.password || ''}
           name="password"
-          onChange={handleInputChange}
+          onChange={handleChange}
         />{' '}
         <br />
-        <button onClick={e => handleClick(e)}>Login</button>
+        <button>Login</button>
       </form>
-      {state.message && <div className="info info-danger">{state.message}</div>}
+      {message && <div className="info info-danger">{message}</div>}
     </div>
   )
 }
