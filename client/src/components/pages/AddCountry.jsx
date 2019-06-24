@@ -1,95 +1,90 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import api from '../../api'
 
-export default class AddCountry extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: '',
-      capitals: '',
-      area: '',
-      description: '',
-      message: null,
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
-  }
+export default function AddCountry(props) {
+  const [state, setState] = useState({
+    name: '',
+    capitals: '',
+    area: '',
+    description: '',
+  })
+  const [message, setMessage] = useState(null)
 
-  handleInputChange(event) {
-    this.setState({
+  console.log(state)
+
+  function handleInputChange(event) {
+    setState({
+      ...state,
       [event.target.name]: event.target.value,
     })
   }
 
-  handleClick(e) {
+  function handleClick(e) {
     e.preventDefault()
-    console.log(this.state.name, this.state.description)
+    console.log(state.name, state.description)
     let data = {
-      name: this.state.name,
-      capitals: this.state.capitals,
-      area: this.state.area,
-      description: this.state.description,
+      name: state.name,
+      capitals: state.capitals,
+      area: state.area,
+      description: state.description,
     }
     api
       .addCountry(data)
       .then(result => {
         console.log('SUCCESS!')
-        this.setState({
+        setState({
           name: '',
           capitals: '',
           area: '',
           description: '',
-          message: `Your country '${this.state.name}' has been created`,
         })
+        setMessage(`Your country '${state.name}' has been created`)
         setTimeout(() => {
-          this.setState({
-            message: null,
-          })
+          setMessage(null)
         }, 2000)
       })
-      .catch(err => this.setState({ message: err.toString() }))
+      .catch(err => setState({ message: err.toString() }))
   }
-  render() {
-    return (
-      <div className="AddCountry">
-        <h2>Add country</h2>
-        <form>
-          Name:{' '}
-          <input
-            type="text"
-            value={this.state.name}
-            name="name"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          Capitals:{' '}
-          <input
-            type="text"
-            value={this.state.capitals}
-            name="capitals"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          Area:{' '}
-          <input
-            type="number"
-            value={this.state.area}
-            name="area"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          Description:{' '}
-          <textarea
-            value={this.state.description}
-            name="description"
-            cols="30"
-            rows="10"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          <button onClick={e => this.handleClick(e)}>Create country</button>
-        </form>
-        {this.state.message && <div className="info">{this.state.message}</div>}
-      </div>
-    )
-  }
+  return (
+    <div className="AddCountry">
+      <h2>Add country</h2>
+      <form>
+        Name:{' '}
+        <input
+          type="text"
+          value={state.name}
+          name="name"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        Capitals:{' '}
+        <input
+          type="text"
+          value={state.capitals}
+          name="capitals"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        Area:{' '}
+        <input
+          type="number"
+          value={state.area}
+          name="area"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        Description:{' '}
+        <textarea
+          value={state.description}
+          name="description"
+          cols="30"
+          rows="10"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        <button onClick={e => handleClick(e)}>Create country</button>
+      </form>
+      {message && <div className="info">{message}</div>}
+    </div>
+  )
 }

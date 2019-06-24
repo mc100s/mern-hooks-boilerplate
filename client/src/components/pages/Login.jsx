@@ -1,61 +1,54 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../api'
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      username: '',
-      password: '',
-      message: null,
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
-  }
+export default function Login(props) {
+  const [state, setState] = useState({
+    username: '',
+    password: '',
+    message: null,
+  })
 
-  handleInputChange(event) {
-    this.setState({
+  function handleInputChange(event) {
+    setState({
+      ...state,
       [event.target.name]: event.target.value,
     })
   }
 
-  handleClick(e) {
+  function handleClick(e) {
     e.preventDefault()
     api
-      .login(this.state.username, this.state.password)
+      .login(state.username, state.password)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push('/') // Redirect to the home page
+        props.history.push('/') // Redirect to the home page
       })
-      .catch(err => this.setState({ message: err.toString() }))
+      .catch(err => setState({ message: err.toString() }))
   }
 
-  render() {
-    return (
-      <div className="Login">
-        <h2>Login</h2>
-        <form>
-          Username:{' '}
-          <input
-            type="text"
-            value={this.state.username}
-            name="username"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          Password:{' '}
-          <input
-            type="password"
-            value={this.state.password}
-            name="password"
-            onChange={this.handleInputChange}
-          />{' '}
-          <br />
-          <button onClick={e => this.handleClick(e)}>Login</button>
-        </form>
-        {this.state.message && (
-          <div className="info info-danger">{this.state.message}</div>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div className="Login">
+      <h2>Login</h2>
+      <form>
+        Username:{' '}
+        <input
+          type="text"
+          value={state.username}
+          name="username"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        Password:{' '}
+        <input
+          type="password"
+          value={state.password}
+          name="password"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        <button onClick={e => handleClick(e)}>Login</button>
+      </form>
+      {state.message && <div className="info info-danger">{state.message}</div>}
+    </div>
+  )
 }

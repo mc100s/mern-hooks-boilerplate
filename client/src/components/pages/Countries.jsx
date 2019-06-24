@@ -1,32 +1,23 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../../api'
 
-export default class Countries extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      countries: [],
-    }
-  }
-  render() {
-    return (
-      <div className="Countries">
-        <h2>List of countries</h2>
-        {this.state.countries.map(c => (
-          <li key={c._id}>{c.name}</li>
-        ))}
-      </div>
-    )
-  }
-  componentDidMount() {
+export default function Countries() {
+  const [countries, setCountries] = useState([])
+  useEffect(() => {
     api
       .getCountries()
       .then(countries => {
-        console.log(countries)
-        this.setState({
-          countries: countries,
-        })
+        setCountries(countries)
       })
       .catch(err => console.log(err))
-  }
+  }, [])
+
+  return (
+    <div className="Countries">
+      <h2>List of countries</h2>
+      {countries.map(c => (
+        <li key={c._id}>{c.name}</li>
+      ))}
+    </div>
+  )
 }
