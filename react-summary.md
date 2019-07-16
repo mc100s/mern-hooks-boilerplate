@@ -8,6 +8,7 @@
 - [JSX](#jsx)
 - [React Components and Props](#react-components-and-props)
 - [React State Hook](#react-state-hook)
+- [React Props VS State](#react-props-vs-state)
 - [React Lifecycle](#react-lifecycle)
 - [React and Events](#react-and-events)
 - [React and Conditional Rendering](#react-and-conditional-rendering)
@@ -390,6 +391,20 @@ ReactDOM.render(
 ```
 
 [Try it on CodePen](https://codepen.io/maxencebouret/pen/ydWEoO?editors=0010)
+
+## React Props VS State
+
+![Generic Component](https://user-images.githubusercontent.com/5306791/61312024-7d235280-a7ef-11e9-9445-279f8336c160.png)
+
+A component takes props as a parameter (from the outside), has a state/hook internally and renders some HTML.
+
+![image](https://user-images.githubusercontent.com/5306791/61312310-15b9d280-a7f0-11e9-9e3b-0c203605f518.png)
+
+### Example with a fake Like button
+
+![image](https://user-images.githubusercontent.com/5306791/61312527-7d701d80-a7f0-11e9-9cbd-227505d288f4.png)
+
+
 
 ## React Lifecycle
 
