@@ -204,12 +204,12 @@ const rightElement1 = (
   </div>
 )
 
-// No syntax error, everything is wrapped by "<React.Fragment>", that is invisible in the DOM
+// No syntax error, everything is wrapped by "<>", that is invisible in the DOM
 const rightElement2 = (
-  <React.Fragment>
+  <>
     <section>first section</section>
     <section>second section</section>
-  </React.Fragment>
+  </>
 )
 
 // Syntax error, the tag is never closed
