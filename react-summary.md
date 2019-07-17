@@ -23,7 +23,7 @@
 ## Resources
 - [React Official Documentation](https://reactjs.org/): They have a good [tutorial](https://reactjs.org/docs/hello-world.html), [advanced guides](https://reactjs.org/docs/jsx-in-depth.html) and [API Reference (list of all methods)](https://reactjs.org/docs/react-api.html)
 - [React Router Offical Documentation](https://reacttraining.com/react-router/web/guides/)
-- **[MERN Boilerplate](https://github.com/mc100s/mern-boilerplate)**
+- **[MERN Boilerplate](https://github.com/mc100s/mern-hooks-boilerplate)**
 
 ## How to use React?
 
