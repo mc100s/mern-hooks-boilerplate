@@ -81,19 +81,6 @@ export default moduleName
 // Shortcut: exd→
 export { destructuredModule } from 'module'
 
-// Shortcut: rcc→ (React Class Component)
-import React, { Component } from 'react'
-
-export default class Filename extends Component {
-  render() {
-    return (
-      <div>
-        $1
-      </div>
-    )
-  }
-}
-
 // Shortcut: rfc→ (React Function Component)
 import React from 'react'
 
