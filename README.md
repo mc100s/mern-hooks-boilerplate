@@ -7,7 +7,25 @@
 - [Deployement on Heroku](#deployement-on-heroku)
 - [Guideline to create clean code](#guideline-to-create-clean-code)
 
-## Set up and execution of the project
+## Setup with the generator
+
+If you want to create a MERN website called `project3`, you can simply type in the terminal:
+```
+$ npx iron-mern-generator project3
+```
+
+If you want to publish the project to GitHub, you can type:
+```
+$ git remote add origin https://github.com/user/my-project.git
+```
+
+If another person wants to clone the project, he has to:
+- Clone the project
+- Run `npm install` to install all the dependencies
+- Add a file `server/.env` file
+
+
+## Setup without the generator
 
 **To download the boilerplate and link it with your GitHub project**
 
@@ -37,6 +55,7 @@ CLOUDINARY_API_KEY=......
 CLOUDINARY_API_SECRET=......
 ```
 
+## Useful commands
 
 **To install all the packages**
 ```sh
@@ -126,8 +145,6 @@ README.md
 - `router.get('/')`: Route to get all users
 - `router.post('/first-user/pictures')`: Route to add a picture on one user with Cloudinary
 
-<!-- TODO: give instructions for Cloudinary -->
-<!-- TODO: give instructions for route guards -->
 
 ### `server/routes/countries.js`
 
