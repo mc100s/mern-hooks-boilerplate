@@ -3,15 +3,18 @@ import api from '../../api'
 import { useForm } from '../../hooks'
 
 export default function Login(props) {
-  const { handleChange, handleSubmit, values } = useForm(() => {
+  const { formValues, getInputProps } = useForm({ lang: 'en' })
+
+  function handleSubmit(e) {
+    e.preventDefault()
     api
-      .login(values.username, values.password)
+      .login(formValues.username, formValues.password)
       .then(result => {
         console.log('SUCCESS!')
         props.history.push('/') // Redirect to the home page
       })
       .catch(err => setMessage(err.toString()))
-  })
+  }
 
   const [message, setMessage] = useState(null)
 
@@ -19,21 +22,8 @@ export default function Login(props) {
     <div className="Login">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        Username:{' '}
-        <input
-          type="text"
-          value={values.username || ''}
-          name="username"
-          onChange={handleChange}
-        />{' '}
-        <br />
-        Password:{' '}
-        <input
-          type="password"
-          value={values.password || ''}
-          name="password"
-          onChange={handleChange}
-        />{' '}
+        Username: <input type="text" {...getInputProps('username')} /> <br />
+        Password: <input type="password" {...getInputProps('password')} />{' '}
         <br />
         <button>Login</button>
       </form>
