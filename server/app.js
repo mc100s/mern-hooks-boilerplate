@@ -26,7 +26,7 @@ app.use(nocache())
 app.use(
   cors({
     origin: (origin, cb) => {
-      cb(null, origin && origin.startsWith('http://localhost:'))
+      cb(null, process.env.NODE_ENV !== 'production')
     },
     optionsSuccessStatus: 200,
     credentials: true,

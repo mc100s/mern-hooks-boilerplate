@@ -1,10 +1,13 @@
 import axios from 'axios'
 
+console.log(process.env.NODE_ENV)
+
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? '/api'
-      : 'http://localhost:5000/api',
+      : `http://${window.location.hostname}:5000/api`,
+
   withCredentials: true,
 })
 
