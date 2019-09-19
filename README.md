@@ -1,13 +1,28 @@
 # MERN boilerplate | Ironhack Fullstack Application
 
+- [Generate the project](#generate-the-project)
 - [Global information](#global-information)
-- [Setups and execution of the project](#setups-and-execution-of-the-project)
 - [How to implement a Full Stack feature?](#how-to-implement-a-full-stack-feature)
 - [Example in the code](#example-in-the-code)
 - [Deployement on Heroku](#deployement-on-heroku)
 - [Guideline to create clean code](#guideline-to-create-clean-code)
 
-## Setup with the generator
+## Generate the project
+
+### Solution 1 | Generate the project with the Github template feature
+
+Click on the button [*Use this template*](https://github.com/mc100s/mern-hooks-boilerplate/generate) on this page and create a new GitHub repository.
+
+Then you can clone the project and add a `server/.env` file, with for example the following values:
+```
+PORT=5000
+SESSION_SECRET=anyValue
+MONGODB_URI=mongodb://localhost/mern-project
+```
+
+
+
+### Solution 2 | Generate the project with `iron-mern-generator`
 
 If you want to create a MERN website called `project3`, you can simply type in the terminal:
 ```
@@ -24,36 +39,6 @@ If another person wants to clone the project, he has to:
 - Run `npm install` to install all the dependencies
 - Add a file `server/.env` file
 
-
-## Setup without the generator
-
-**To download the boilerplate and link it with your GitHub project**
-
-(replace `<my-project>` and `<https://github.com/user/my-project.git>` by what you want, without `<` and `>`).
-
-```sh
-# Clone the project with only the last commit and save it in the folder <my-project>
-$ git clone --depth=1 https://github.com/mc100s/mern-boilerplate.git <my-project>
-
-$ cd <my-project>
-$ rm -rf .git
-$ git init
-
-# Set your GitHub repository as the "origin" remote repository
-$ git remote add origin <https://github.com/user/my-project.git>
-```
-
-### Files to add
-
-You should have a `server/.env` file, with for example the following values:
-```
-PORT=5000
-SESSION_SECRET=anyValue
-MONGODB_URI=......
-CLOUDINARY_CLOUD_NAME=......
-CLOUDINARY_API_KEY=......
-CLOUDINARY_API_SECRET=......
-```
 
 ## Useful commands
 
