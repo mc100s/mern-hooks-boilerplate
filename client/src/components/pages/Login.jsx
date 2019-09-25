@@ -3,7 +3,10 @@ import api from '../../api'
 import { useForm } from '../../hooks'
 
 export default function Login(props) {
-  const { formValues, getInputProps } = useForm({ lang: 'en' })
+  const { formValues, getInputProps } = useForm({
+    username: '',
+    password: '',
+  })
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -23,7 +26,7 @@ export default function Login(props) {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         Username: <input type="text" {...getInputProps('username')} /> <br />
-        Password: <input type="password" {...getInputProps('password')} />{' '}
+        Password: <input type="password" {...getInputProps('password')} />
         <br />
         <button>Login</button>
       </form>
